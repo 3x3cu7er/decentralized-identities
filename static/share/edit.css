@@ -1,0 +1,45 @@
+.container{
+    height: 90%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-content: left;
+    align-items: left;
+    justify-items: left;
+    justify-content: left;
+    padding: 3%;
+}
+.join{
+    display: flex;
+    width: 60%;
+    text-align: center;
+    gap: 3%;
+
+}
+.join label{
+    margin-top: 3.5%;
+}
+.join input{
+    outline: none;
+    border: none;
+}
+button,input[type="email"],input[type="text"],select{
+    outline: none;
+    border: .1px solid silver;
+    padding-left: 3%;
+    border-radius: 5px;
+    height: 3.5vw;
+}
+textarea{
+    border: .1px solid silver;
+    resize: none;
+    padding: 2% 0 1% 1.8%;
+    outline: none;
+    border-radius: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
