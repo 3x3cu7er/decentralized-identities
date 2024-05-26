@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,700&family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: url("/static/user/picture/northern1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.receiver {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 400px;
+  margin: auto;
+  margin-top: 190px;
+  position: absolute;
+  left: 19%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+}
+
+.receiver h1 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c6c3c3;
+  width: 160px;
+  height: 40px;
+  border-radius: 0 0 20px 20px;
+  font-size: 30px;
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 200px;
+  margin: auto;
+  margin-top: 30px;
+  position: absolute;
+  left: 4%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+}
+
+
+.file h1 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c6c3c3;
+  width: 200px;
+  height: 25px;
+  border-radius: 0 0 10px 10px;
+  font-size: larger;
+}
+
+
+.user {
+  position: absolute;
+  top: 350px;
+  left: 550px;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px 30px 0px 0px;
+}
+
+.user button {
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-left: 250px;
+  width: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.user button:hover {
+  background-color: white;
+}
+
+.user input[type="text"] {
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  width: 600px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid white;
+  outline: none;
+}
+
+.user input[type="text"]:focus {
+  border-color: #a9a6a6;
+}
+
+.file_info {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* hass nav */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: #333; */
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: rgb(41, 96, 192);
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 20px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+  color: #ffd700; /* Change the color on hover */
+}
+
+.content {
+  padding: 20px;
+}

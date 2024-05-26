@@ -1,0 +1,27 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container{
+    width: 50%;
+    height: 60%;
+    padding:2% 0 8% 5%;
+    box-shadow: 10px 8px 25px silver;
+    margin: 10% 0 15% 0;
+}
+
+.tips{
+    display:flex;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding-bottom:4%;
+}
