@@ -1,0 +1,262 @@
+:root{
+    --blue:rgb(7, 7, 197);
+    --font-weight: 200;
+}
+
+.title{
+    color: var(--blue);
+    font-weight: var(--font-weight);
+}
+
+:root{
+    --shadow : 10px 8px 25px silver;
+}
+
+
+
+.files{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.folder{
+    width: calc(100% - 45%);
+    height: 100%;
+    padding: 3%;
+    margin-bottom:25%;
+    margin-top: 2%;
+   
+}
+/* .up{
+    margin-top:-1.7%
+} */
+
+.martop{
+    margin-top: 10%;
+}
+
+
+.bold{
+    font-size: 5rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:1%;
+}
+.bold-x{
+    margin-left: 15%;
+    color: blue;
+}
+.header-main{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    font-size: 100%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.categories{
+    width: 50%;
+    height: 100%;
+    margin-left:5%;
+   
+}
+.files-x:last-child .categories{
+    height:110%;
+}
+.scroll-x{
+    width: 100%;
+    height:100%;
+    /* overflow: hidden; */
+    /* overflow-y: auto; */
+    margin:5% 0 15% 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:5%;
+}
+.cat{
+    width: 90%;
+    height: 100%;
+    padding: 2%;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+}
+.emoji{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2%;
+    flex-direction: column;
+     margin-top: 10%;
+    margin-bottom: 8%;
+}
+.emoji img{
+    width: 45%;
+    margin-bottom: 8%;
+}
+
+
+.btn{
+    margin-top: 3%;
+}
+
+.sub-btn{
+    margin-bottom: 10%;
+    width: 100%;
+    height: 10%;
+}
+
+.top-content{
+    display: flex;
+    gap: 1%;
+}
+
+.top-content h5{
+    margin-left: 15%;
+}
+.top-content h5 .spread{
+    width: 100%;
+}
+.cat hr,.tips hr{
+    width: 80%;
+    margin-top: 3%;
+}
+
+.form{
+    text-align: left;
+    height:100%;
+}
+.form-item textarea{
+  width:80%;
+  height: 15%;
+  padding: 2%;
+  font-size: 1.1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  border: .1px solid black;
+  border-radius: 15px;
+  outline: none;
+  margin-top: 2%;
+  resize: none;
+}
+.form-item input[type="date"],.form-item input[type="text"],.form-item input[type="email"],.form-item input[type="password"]{
+   width: 80%;
+    height:8%;
+  padding: 2%;
+  font-size: 1.1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  border: .1px solid black;
+  border-radius: 15px;
+  outline: none;
+  margin-top: 2%;
+}
+.search{
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 3%;
+}
+.search input[type="search"]{
+    height: 10vh;
+}
+.search-item{
+    width:calc(100% - 35%);
+    height: 100%;
+    padding-left: 10%;
+    outline: none;
+    border: .2px solid silver;
+    border-radius: 15px;
+    box-shadow: 10px 8px 25px silver;
+    font-size: 1.2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.control-btns{
+    display: flex;
+    gap: 15px;
+    width: calc(100% - 35%);
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.search-icon{
+    position: absolute;
+    left: calc(100% - 75%);
+}
+
+.ctrl{
+    width: 10rem;
+    height: 6vh;
+    outline: none;
+    border: none;
+    box-shadow: 5px 2px 15px silver;
+    font-size: 1.2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.marginTop{
+    margin-top: 10%;
+}
+
+
+.form-item{
+    margin-top:3%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.files-x{
+    width: 100%;
+    height:100%;
+    padding-bottom:15%;
+    margin-top: 5%;
+}
+
+.ic-image{
+    width: 100%;
+    height:55%;
+}
+
+.ic-image img{
+    width:50%;
+    height:100%
+}
+
+.blue{
+    color:blue;
+    margin-left:3%;
+}
+.tips{
+    display:flex;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding-bottom:4%;
+}

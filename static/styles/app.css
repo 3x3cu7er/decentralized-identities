@@ -1,0 +1,50 @@
+
+/* Home Page */
+.body {
+    background-image: url(/home5.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    position: relative;
+    color: white;
+  }
+
+  .front{
+    background-color: rgba(255, 255, 255, 0);
+    height: 100vh ;
+  }
+
+  .app-container{
+    text-align: center;
+  }
+  .control-btns{
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+.hide{
+  display: none;
+}
+
+.ctrl{
+    width: 10rem;
+    height: 6vh;
+    outline: none;
+    border: none;
+    box-shadow: 5px 2px 15px silver;
+    font-size: 1.2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+}
+
+.marginTop{
+    margin-top: 10%;
+}

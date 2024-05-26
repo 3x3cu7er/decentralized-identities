@@ -1,0 +1,104 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  /* body{
+    background-color: #030731;
+  } */
+.app-logo{
+  width: 3rem;
+  height: 3rem;
+  background: url("./icons/main-icon.png") center no-repeat;
+  background-size: cover;
+  margin-top: -.6%;
+}
+.app-logo-link{
+  display: flex;
+}
+@media (max-width: 640px) {
+  .entity {
+    height: 80vh;
+    width: 100%;
+    margin: 0.2% 0.4% 10% 0.4%;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid silver;
+    box-shadow: 10px 5px 15px silver;
+  }
+  ::-webkit-scrollbar {
+    width: 0.1%;
+  }
+  hr {
+    width: 40%;
+    margin: 4% 0 5% 30%;
+  }
+  .social-elements,
+  .education-elements,
+  .contact-elements,
+  .identity-elements {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .education-elements,
+  .contact-elements,
+  .identity-elements,
+  .social-elements {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .education-element,
+  .identity-element,
+  .social-element {
+    width: 90%;
+    height: 85%;
+    margin: 2%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: none;
+    border-right: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+  }
+  .contact-element {
+    width: 90%;
+    height: 45%;
+    margin: 2%;
+    border-left: none;
+    border-right: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+  }
+  .header {
+    font-size: 2rem;
+  }
+}

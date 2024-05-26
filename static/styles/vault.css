@@ -1,0 +1,9 @@
+:root{
+    --blue:rgb(7, 7, 197);
+    --font-weight: 200;
+}
+
+.title{
+    color: var(--blue);
+    font-weight: var(--font-weight);
+}

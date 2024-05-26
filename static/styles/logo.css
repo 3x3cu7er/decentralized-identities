@@ -1,0 +1,28 @@
+.applogo{
+    display:flex;
+    width:100%;
+    height:10%;
+    gap:2%
+}
+
+a{
+    text-decoration:none;
+    color:black;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+.applogo h3{
+    position:absolute;
+    left:4.5%;
+}
+
+.applogo h3 img{
+    width:10%;
+    margin-top:-3%;
+}
+
+.profile-x{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}

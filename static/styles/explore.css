@@ -1,0 +1,15 @@
+.nav-links{
+    
+    height: 70%;
+    width: 20%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    gap: 5%;
+    box-shadow: 2px 5px 15px silver;
+    border-radius: 30px;
+    position:fixed;
+    top:20%;
+}
