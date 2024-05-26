@@ -1,0 +1,7 @@
+<h2>Enable MFA for {{ identity.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enable MFA</button>
+</form>
+<a href="{% url 'identity_list' %}">Back to Identity List</a>

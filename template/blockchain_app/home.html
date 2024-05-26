@@ -1,0 +1,76 @@
+{% extends '../wallet/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>Your wallet address: {{ wallet.address }}</p>
+        <p><a href="{% url 'logout' %}" class="btn btn-danger">Logout</a></p>
+
+        <!-- Send Transaction Form -->
+        <form id="send-transaction-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="recipient" class="form-control" placeholder="Recipient Address" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="identity" class="form-control" placeholder="Identity" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Transaction</button>
+        </form>
+
+        <!-- View Transactions Link -->
+        <p><a href="{% url 'view_transactions' %}" class="btn btn-info">View Transactions</a></p>
+
+        <!-- Create Wallet Form -->
+        <form id="create-wallet-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Create Wallet</button>
+        </form>
+    {% else %}
+        <h2>You are not logged in.</h2>
+        <p><a href="{% url 'login' %}" class="btn btn-primary">Login with Google</a></p>
+    {% endif %}
+
+    <script>
+        // Event listener for wallet creation form submission
+        document.getElementById('create-wallet-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch("{% url 'create_wallet' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.wallet_address) {
+                    location.reload();
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Event listener for send transaction form submission
+        document.getElementById('send-transaction-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch("{% url 'send_transaction' %}", {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+{% endblock %}

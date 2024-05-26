@@ -1,0 +1,75 @@
+
+{% load static%}
+{% include './components/logo.html'%}
+{% include './components/navigation.html'%}
+{% block mainContent%}
+<link rel="stylesheet" href="{% static '/styles/files.css'%}">
+
+      <div class="file-container">
+
+       <!-- <Explore/> -->
+        <!-- {/* <Link href="/account">
+          <button class={styles.btn}>Sign up</button>
+        </Link> */} -->
+                 <h1 class="bold move" style="margin-top: 25%;margin-bottom:10%">Data Drive  <span><img src="../static/public/card1.gif" alt=""></span></h1>
+
+        <div class="files">
+
+          <div class="search ">
+            <form action="">
+              <img alt="icon"
+            class="search-icon"
+            width="30"
+            height="30"
+            src="../static/public/search.gif"
+            />
+            <input type="search" placeholder="search for an data record !" name="search" id=""  class="search-item"/>
+            <input class="search-btn" type="submit" value="Search">
+          </form>
+          </div>
+          
+          
+          
+                <div class="folder">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tag</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Identity </th>
+                        <th>Created</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+
+                        {%  for identity in identities %}<ul>
+                          <li>
+                            <div class="saved-file">
+                              <div class="fl">
+                                {{identity.identity}}
+                              </div>
+                              <div class="fl">
+                                {{identity.identity_type}}
+                              </div>
+                              <div class="fl">
+                                {{identity.created}}
+                              </div>
+                             <div class="fl">
+                              {{identity.organization}}
+                             </div>
+                            </div>
+                          </li></ul>
+                          {% endfor%}
+                     
+                </div>
+            
+          
+
+        </div>
+  
+
+      </div>
+
+{% endblock%}

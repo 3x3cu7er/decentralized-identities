@@ -1,0 +1,88 @@
+
+{% extends 'main.html' %}
+{% load static%}
+
+
+{% block mainContent%}
+<link rel="stylesheet" href="{% static '/styles/css/bootstrap.css'%}">
+<link rel="stylesheet" href="{% static '/styles/dashboard.css'%}">
+<!-- <link rel="stylesheet" href="{% static '/styles/css/main.css'%}"> -->
+<!-- import DashboardLayout from './nano/dashboard/page' -->
+<!-- <Link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/> -->
+<!--  <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+ integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+ crossorigin="anonymous"
+  referrerpolicy="no-referrer" />   -->
+  <!-- <link href="./css/aos.min.css"
+ rel="stylesheet" /> */} -->
+    <div class="dash-top">
+      <div class="title">
+        <h1>Dashboard <span><img src="../static/public/chart2.gif" alt=""></span></h1>
+        <div class="links">
+          <a href="#activities">Activities</a>
+          <a href="{% url 'Profile'%}">Profile</a>
+          <a href="#alerts">Notifications</a>
+
+
+          <a>
+            <div class="mata-form" style="height: 60%; ">
+            <form style="height: 100%;" action="{% url 'space:logout'%}" method="post">
+              {% csrf_token%}
+        <button style="height: 100%;" class="btn">logout</button>
+            </form>
+            <br />
+            <br />
+          </div>
+          </a>
+
+
+        </div>
+      </div>
+    </div>
+        <div class="mainDashboard">
+          <!-- <DashboardLayout/> -->
+              <!-- Home -->
+    <section class="home py-5 d-flex align-items-center" id="header">
+      <video autoplay muted loop id="myVideo">
+        <source src="../static/public/earth.mp4" type="video/mp4">
+      </video>
+            <div class="container  text text-light py-5" data-aos="fade-right">
+              <h1 class="headline text">
+                Hello  <span class="text-info">{{request.user|title}}</span>, welcome <br>
+                to your Digital Identity.
+              </h1>
+              <p class="para  py-3">
+                The Document Verification platform <br> 
+                designed to bring efficiency and security to your operations.
+              </p>
+      
+              <div class="my-3">
+                <a class="btn bg-danger text-white" href="{% url 'shared credential'%}">Go Share</a>
+              </div>
+              
+            </div>
+            <!-- end of container -->
+          </section>
+    
+          <!-- down dash  -->
+          <div class="dash" id="activities">
+
+            <div class="activity-title">
+              <h2>Activities <span><img src="../static/public/update.gif" alt=""></span></h2>
+            </div>
+          </div>
+          <!-- note dash  -->
+          <div class="dash" id="alerts">
+
+            <div class="activity-title" >
+              <h2>Notifications <span><img src="../static/public/alert.gif" alt=""></span></h2>
+            </div>
+          </div>
+
+        </div>       
+        
+     
+<!-- <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></Script>    -->
+
+{% endblock%}

@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainContent%}
+
+<link rel="stylesheet" href="{% static '/styles/addContent.css'%}">
+<div class="file-drive">
+    <h1 class="bold ">Create a  <span class="blue">  New Account.</span> </h1>
+
+      <div class="files-x">
+        <h1 class="bold-x ">Account Section.</h1>
+       <div class="scroll-x">
+       <div class="categories">
+          <div class="cat">
+            <div class="top-content">
+              <img width="25" class="up" height="25" src="../static/public/plus.svg"/>
+              <h5>Account</h5>                         </div><hr />
+
+
+              <div class="form">
+                <form action=""  method="post">
+                  {% csrf_token %}
+                <div class="form-item">
+                <label class="account" for="account-name">Account Type:</label>
+                <input type="text" name="account-name" placeholder="Account Header" id="account-type" />
+                </div>
+                
+                <div class="description">
+                <div class="form-item">
+                  <label for="description">Description:</label>
+                  <textarea name="description"  id="description" placeholder="Account Description" ></textarea>
+                </div>
+                </div>
+
+                <div class="input-credential">
+                <div class="form-item">
+                <label class="credential-input" for="account-input">Input Account:</label>
+                <input type="text" name="account"  placeholder="account" id="account-input" />
+                </div>
+                </div>
+
+                <div class="input-credential">
+                <div class="form-item">
+                <label class="credential-passwd" for="account-passwd">Password :</label>
+                <input type="password" name="account-passwd"  placeholder="password" id="account-passwd" />
+                </div>
+                </div>
+                <div class="sub-btn " >
+          <input type="submit" value="Add to Account"   class="btn"/>
+        </div>
+                </form>
+        
+              </div>
+
+        
+          </div>
+
+
+        </div>
+        <div class="tips">
+          <h5> <span>tips</span></h5><hr>
+          <div class="ic-image">
+            <img src="../static/public/account.png" alt="">
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+             Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+              perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+               commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+                quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+            libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+          </p>
+        </div>
+       </div>
+        
+      </div>
+    </div>
+{% endblock%}

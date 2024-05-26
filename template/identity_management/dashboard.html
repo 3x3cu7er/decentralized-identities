@@ -1,0 +1,16 @@
+{% extends '../wallet/base.html'%}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static '/share/edit.css'%}">
+<body>
+    <h1>Dashboard</h1>
+    <h2>Your Credentials:</h2>
+    <ul>
+        {% for credential in credentials %}
+            <li>{{ credential.credential }} Issued at: {{ credential.issued_at }}</li>
+        {% endfor %}
+    </ul>
+    <div class="d-flex"><a href="{% url 'issue_credential' %}" class="mr-2">Issue Credential </a> | 
+    <a href="{% url 'logout' %}" class="ml-2"> Logout</a></div>
+</body>
+{% endblock content %}

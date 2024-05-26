@@ -1,0 +1,33 @@
+{% extends './wallet/base.html' %}
+{% load static %}
+
+{% block content%}
+
+    <link rel="stylesheet" href="{% static '/share/shared_lists.css'%}">
+<body>
+    
+        
+        <h1>Credentials Received from Users</h1>
+        {% for shared_text in shared_texts %}
+                    
+                 <div class="content">
+                    <div class="head">
+                        <h4>Received From <h5>[ {{ shared_text.owner.username}} ]</h5></h4>
+                        
+                        <p><strong>Time Limit:</strong> {{ shared_text.time_limit }} minutes</p>
+                        <p><strong>Created At:</strong> {{ shared_text.created_at }}</p>
+                        <p><strong>Expires At:</strong> {{ shared_text.time_limit|date:"Y-m-d H:i:s" }}</p>
+                        <p><strong>Data:</strong> {{ shared_text.data }}</p>
+                    </div>
+                   <div class="body">
+                   <div class="data"><p>{{ shared_text.text }}</p> </div>
+                   <div class="edit"><a href="{% url 'edit shared credential' shared_text_id=shared_text.id%}">Update</a></div>
+        
+                   </div>
+                 </div>  
+                 
+                
+        {% endfor %}
+    
+</body>
+{% endblock content %}

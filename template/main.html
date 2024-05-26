@@ -1,0 +1,119 @@
+{% include './components/logo.html'%}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Auth-Drive Identity Manager (ADIM){% endblock %}</title>
+    <script src= 
+    "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"> 
+    </script> 
+    <!-- Include Web3.js library -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+
+    <link rel="stylesheet" href="{% static '/styles/css/styles.css'%}"/>
+</head>
+<body>
+        {% block mainContent%}
+
+        
+
+        
+    <div class="maincontainer">
+        <div class="container">
+          <h1 style="width: 98%;height: 40%;display: flex;align-items: center;justify-content: center;text-align: center;margin-left: 4%;"><span style="font-size: 4vw;margin: 45% 4% 45% 3% ;color: silver;">Hello</span> <span style="font-size: 6vw; font-family: Georgia, 'Times New Roman', Times, serif;margin-right: 4%;font-weight: bold;color: rgba(192, 192, 192, 0.546);">{{request.user}}</span> <span style="color: silver;">, welcome to the Blockchain  Dapp !</span></h1>
+
+
+          <div style="width: 100%;height:100%;align-items:center;justify-content:center;display:flex" class="image">
+            <img style="width:45%;height:100%" src="../static/undraw/get_identity.png" alt="">
+          </div>
+          
+        <div class="controls">
+        
+        <p >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non sed
+                      accusantium aut dolores inventore architecto modi cupiditate
+                      eligendi corporis, illum illo culpa. <br/> Reiciendis, molestias. Illum
+                      voluptatum quisquam ad veritatis dolorem.Lorem ipsum dolor sit amet consectetur adipisicing elit. Non sed
+                      accusantium aut dolores inventore <br/> architecto modi cupiditate
+                      eligendi corporis, illum illo culpa. <br/> Reiciendis, molestias. Illum
+                      voluptatum quisquam ad veritatis dolorem.
+        </p>
+        <!-- metamsk account address display  -->
+       
+        <!-- buttons  -->
+        
+  
+        <div class="accountsbtns">
+          <div class="mata-form">
+            <form action="{% url 'add to shared credential'%}">
+              <input type="submit" value="Share Identity in a text format" class="btn"/>
+            </form>
+            <br />
+            <br />
+          </div>
+
+
+       <div >
+            <a href="{% url 'add contents to store' %}" class="btn">Add To Drive</a>
+             <a href="{% url 'upload credential file' %}" class="btn">Share Identity in a File Format</a>
+          </div>
+
+
+          <div class="mata-form">
+            <form action="{% url 'space:logout'%}" method="post">
+              {% csrf_token%}
+        <button class="btn">logout</button>
+            </form>
+            <br />
+            <br />
+          </div>
+
+
+         
+          </div>
+          
+        </div>
+      <div style="width: 100%;height:100%;align-items:center;justify-content:center;display:flex" class="image">
+            <img style="width:45%;height:100%" src="../static/undraw/generate_code.png" alt="">
+          </div>
+      </div>
+      </div>
+    
+      <script>
+        // Script.js 
+// create a new QRCode instance 
+let qrcode = new QRCode( 
+	document.querySelector(".qrcode") 
+); 
+
+// Initial QR code generation 
+// with a default message 
+qrcode.makeCode("{{data}}"); 
+
+// Function to generate QR 
+// code based on user input 
+function generateQr() { 
+	if ( 
+		document.querySelector("input") 
+			.value === "" || 
+		document.querySelector("input") 
+			.value === " ") { 
+		alert( 
+			"Input Field Can not be blank!"
+		);} 
+	else { 
+		qrcode.makeCode( 
+			document.querySelector( 
+				"input"
+			).value); 
+}}
+      </script> 
+
+      <script src="{% static '/js/metamask.js'%}"></script> 
+      {% endblock %}
+</body>
+</html>

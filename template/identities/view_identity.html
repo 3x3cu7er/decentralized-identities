@@ -1,0 +1,17 @@
+<!-- identities/templates/identities/view_identity.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Identity</title>
+</head>
+<body>
+    <h1>{{ identity.name }}</h1>
+    <p>Email: {{ identity.email }}</p>
+    <p>IPFS Hash: {{ identity.ipfs_hash }}</p>
+
+    <h2>Identity Data from IPFS:</h2>
+    <pre>{{ ipfs_data }}</pre>
+</body>
+</html>

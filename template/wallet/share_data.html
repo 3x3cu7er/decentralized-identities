@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+{% block content%}
+    <h1>Share Data</h1>
+    
+
+<form id="shareDataForm" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="recipientAddress">Recipient Address:</label>
+        <input type="text" name="recipient" class="form-control" id="recipientAddress" required>
+    </div>
+    <div class="form-group">
+        <label for="data">Data:</label>
+        <textarea class="form-control" name="data" id="data" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" id="encryptCheckbox" name="encrypt" value="encrypt">
+        <label for="encryptCheckbox">Encrypt Data</label><br><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Share Data</button>
+</form>
+
+<p id="shareDataResult" class="mt-3"></p>
+
+<script>
+     // Function to handle data sharing form submission
+    $('#shareDataForm').submit(function(event) {
+        event.preventDefault();
+        var recipientAddress = $('#recipientAddress').val();
+        var data = $('#data').val();
+        
+        // Send AJAX request to share data
+        $.ajax({
+            url: '{% url "share_data" %}',
+            type: 'POST',
+            data: {
+                recipient_address: recipientAddress,
+                data: data
+            },
+            success: function(response) {
+                $('#shareDataResult').text(response.message);
+            },
+            error: function(error) {
+                console.log(error);
+                $('#shareDataResult').text('Error sharing data. Please try again.');
+            }
+        });
+    });
+
+</script>
+{% endblock content%}

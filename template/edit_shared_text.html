@@ -1,0 +1,46 @@
+{% extends './wallet/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static '/share/edit.css'%}">
+<body>
+    <div class="container">
+        <h1> User Data.</h1>
+    <h2>Encoded  credential.</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="text">Update Data</label><br>
+        <textarea name="text" id="text" rows="4" cols="50">{{ shared_text.text }}</textarea><br>
+        
+        <h1>Decipher Data</h1>
+        <label for="decipher">Encryption key</label>
+        <input type="text" name="iv" ><br>
+        <label for="cipher">Copy & paste the cipher text</label>
+        <input type="text" name="ct" ><br>
+        <label for="key">Decryption key</label><br>
+        <input type="text" name="key" ><br>
+        <div class="join">
+            <input type="checkbox" name="agree" id="">
+        <label for="save">check to save</label>
+        </div>
+        <label for="recipient">Recipient:</label><br>
+        <select name="recipient" id="recipient">
+            {% for user in users %}
+            <option value="{{ user.username }}" {% if user.id == shared_text.recipient.id %} selected {% endif %}>{{ user.username }}</option>
+            {% endfor %}
+        </select><br>
+        <div class="decryption">
+            <h1 class="head1">[ Decrypted Data ] : </h1>  
+            <h4>{{pt}}</h4>          
+        </div><br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+
+    <!-- <form action="" method="get">
+        {% csrf_token %}
+        <label for="decipher">Decode Text</label>
+        <input type="text" name="iv" >
+        <button type="submit">Submit</button>
+    </form> -->
+</body>
+{% endblock content %}

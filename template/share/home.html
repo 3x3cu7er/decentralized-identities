@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+
+        <h1>User Files</h1><br>
+
+        <a href="{% url 'sharing:upload credential file'%}"> Upload</a> <br>
+
+        {% if user_files %}
+            <ul>
+                {% for file in user_files %}
+                    <li>
+                        <strong>File Name:</strong> {{ file.fileName }}
+                        <br>
+                        <strong>File Size:</strong> {{ file.fileSize }} mb
+                        <br>
+                        {# We can download the file using the .url but it will be encrypted. #}
+                        {# <strong><a href="{{ file.fileDir.url }}"> Download file </a></strong> #}
+                        {# we are passing file id here that is clicked. file is from the datbase.#}
+                        <a href="{% url 'sharing:download credential file' file_id=file.id %}"> Download File </a><br>
+                        <a href="{% url 'sharing:share a credential file' file_id=file.id %}"> Share File </a>
+                        <br><br>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            <p>No files uploaded yet.</p>
+        {% endif %}
+
+    {% else %}
+
+            <h1> Login or Sign in</h1>
+            <a href="{% url 'space:login' %}"> log in</a>
+            <a href="{% url 'space:registration' %}"> sign up</a>
+
+    {% endif %}
+    
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% load static%}
+{% include './components/logo.html'%}
+{% include './components/navigation.html'%}
+{% block mainContent%}
+<link rel="stylesheet" href="{% static '/styles/files.css'%}">
+
+      <div class="file-container">
+
+       <!-- <Explore/> -->
+        <!-- {/* <Link href="/account">
+          <button class={styles.btn}>Sign up</button>
+        </Link> */} -->
+                 
+
+        <div class="files martop">
+<h1 class="bold move" style="margin-top: 25%;margin-bottom:10%">Files Drive  <span><img src="../static/public/upload-document.gif" alt=""></span></h1>
+          <div class="search ">
+            <form action="" method="post">
+              {% csrf_token %}
+              <img alt="icon"
+            class="search-icon"
+            width="30"
+            height="30"
+            src="../static/public/search.gif"
+            />
+            <input type="search" placeholder="search using file tag !" name="search" id=""  class="search-item"/>
+            <input class="search-btn" type="submit" value="Search">
+          </form>
+          </div>
+  
+          
+                <div class="folder">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>File tag</th>
+                        <th>File  download</th>
+                        <th>Created on</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+
+                        {%  for file in files %}<ul>
+                          <li>
+                            <div class="saved-file">
+                              <div class="fl">
+                                {{file.file_tag}}
+                              </div>
+                              <a href="{{file.file.url}}" download="{{file.file.url}}" class="fl">
+                                {{file.file}}
+                              </a>
+                              <div class="fl">
+                                {{file.created}}
+                              </div>
+                             <div class="fl">
+                              {{file.description}}
+                             </div>
+                            </div>
+                          </li></ul>
+                          {% endfor%}
+                     
+                </div>
+            
+          
+
+        </div>
+  
+
+      </div>
+
+{% endblock%}

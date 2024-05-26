@@ -1,0 +1,10 @@
+{% extends '../wallet/base.html' %}
+
+{% block content %}
+<h2>Encrypted Data</h2>
+{% if encrypted_data %}
+    <p><strong>Encrypted Data:</strong> {{ encrypted_data.encrypted_data }}</p>
+{% else %}
+    <p>No encrypted data available.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="shadow-wrap">
+ <div class="form-wrap">
+  <h1>foundationX  </h1>
+  <h3>SignUp</h3><br>
+<form method="POST">
+ {% csrf_token %}
+ 
+ {{form}}
+ 
+ <button type="submit">Submit</button>
+</form>
+<a class="signup-link" href="{% url 'space:login' %}">Login</a>
+</div>
+</div>
+{% endblock content %}a

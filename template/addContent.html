@@ -1,0 +1,84 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainContent%}
+
+<link rel="stylesheet" href="{% static '/styles/shortcuts.css'%}">
+<div class="file-drive">
+    <h1 class="bold "><span class="blue"> ...</span> </h1>
+
+
+
+    <div class="tips">
+      <hr>
+      <h1> <span>Tips</span></h1>
+     
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+         Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+          perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+           commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+            quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+        libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+      </p>
+      <hr>
+    </div>
+      <div class="files">
+       <div class="scroll-x">
+       <div class="categories">
+          <a href="{% url 'upload credential file'%}">
+            <div class="cat">
+              <div class="top-content">
+                
+                <h5><img width="25" class="up" height="25"  src="../static/public/plus.svg"/>Share File <hr class="spread"></h5>
+                
+                
+              </div>
+              <div class="flex">
+                <img src="../static/public/upload-document.gif" alt="">
+                <h4>upload & share file</h4>
+              </div>
+            </div>
+          </a>
+        </div>
+
+    
+        <div class="categories">
+          <a href="{% url 'create_identity'%}">
+            <div class="cat">
+              <div class="top-content">
+                
+                <h5><img width="25" class="up" height="25"  src="../static/public/plus.svg"/>Add Wallet <hr class="spread"></h5>
+                
+              </div>
+             <div class="flex">
+              <img src="../static/public/card1.gif" alt="">
+              <h4>Create Wallet</h4>
+             </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="categories">
+         <a href="{% url 'shared credential'%}">
+          <div class="cat">
+            <div class="top-content">
+              
+              <h5><img width="25" class="up" height="25"  src="../static/public/plus.svg"/>Receid Data <hr class="spread"></h5>
+              
+            </div>
+            <div class="flex">
+              <img src="../static/public/receive.gif" alt="">
+              <h4>Data Received</h4>
+            </div>
+          </div>
+         </a>
+        </div>
+
+        
+       </div>
+      </div>
+
+
+     
+    </div>
+{% endblock%}

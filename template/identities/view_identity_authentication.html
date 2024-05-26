@@ -1,0 +1,8 @@
+<!-- templates/identities/view_identity_authentication.html -->
+
+<form method="post">
+    {% csrf_token %}
+    <label for="key">Key:</label>
+    <input type="text" name="key" required><br>
+    <button type="submit">Authenticate</button>
+</form>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h1>To Register for DID, make sure you have USER account first</h1>
+    <h2>Registeration for DID</h2>
+    <form id="registerForm">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username"><br>
+        <input type="text" name="user_address" placeholder="User metamask key"><br>
+        <input type="email" name="email" placeholder="email"><br>
+        <button type="submit">Register</button>
+        
+    </form>
+    <a class="signup-link" href="{% url 'space:authView' %}">create an account?</a>
+    <div id="message"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#registerForm').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/register/',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $('#message').text('Registration successful. An email is sent to you which contains the DID you just created.');
+                        } else {
+                            $('#message').text('Registration failed');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

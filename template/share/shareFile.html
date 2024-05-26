@@ -1,0 +1,74 @@
+
+{% extends '../wallet/base.html' %}
+
+{% block content %}
+
+<body>
+    <div class="navbar">
+        <div class="logo">Share Data File To Others</div>
+        <ul class="nav-list">
+            <li><a href="{% url 'credential sharing home' %}">Home</a></li>
+            <li><a href="{% url 'upload credential file'%}">Upload File</a></li>
+            <form action="{% url 'space:logout'%}" method="post">
+              {% csrf_token%}
+        <button class="btn">logout</button>
+            </form>
+        </ul>
+    </div>
+
+    <div class="receiver">
+        <h1>Receiver</h1>
+    </div>
+    <form method="post">
+        <div class="user">
+
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" placeholder="Enter Username">
+            <br>
+            <br>
+            <div class="file">
+        <h1>File Description</h1>
+    </div>
+
+    <div class="file_info">
+        <p>File Name: {{file_to_share.fileName}}</p>
+        <br>
+        <p>File Size: {{file_to_share.fileSize}} </p>
+        <br>
+        <!-- <p>File Type: </p>
+        </b> -->
+    </div>
+            <!-- <label for="share">To share a file: </label> -->
+            <button type="submit" class="btn btn-primary" id="share" name="share">Share</button></b>
+
+
+            {% if errorMessage %}
+                <script>
+                    alert("{{ errorMessage }}");
+                </script>
+            {% endif %}
+        
+            <!-- {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>
+                            {% if message.tags %} 
+                            
+                            class="{{ message.tags }}" 
+
+                            {% endif %}>{{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %} -->
+            
+        </div>
+    </form>
+
+
+    
+
+</body>
+
+{% endblock content %}

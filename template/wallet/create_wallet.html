@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+
+{% block content %}
+<h2>Create Wallet</h2>
+<div class="form">
+    <form action="" method="post">
+        {% csrf_token %}
+        <button id="createWalletBtn" class="btn btn-primary">Create Wallet</button>
+    </form>
+</div>
+<p id="walletAddress" class="mt-3"></p>
+
+
+
+<script>
+   
+    // Function to handle wallet creation
+    $('#createWalletBtn').click(function() {
+        $.ajax({
+            url: '{% url "create_wallet" %}',
+            type: 'POST',
+            success: function(data) {
+                $('#walletAddress').text('New Wallet Address: ' + data.wallet_address);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
+{% endblock %}

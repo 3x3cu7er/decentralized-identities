@@ -1,0 +1,69 @@
+{% load static %}
+{% block title %}
+<title>Issue Identity</title>
+{% endblock title%}
+{% block body %}
+<link rel="stylesheet" href="{% static '/css/issues.css'%}">
+<body>
+    <h1>Issue Identity</h1>
+
+    <div class="emoji">
+      
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+           Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+            perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+             commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+              quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+          libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+        </p>
+    </div>
+    <img src="../static/undraw//agree.png" alt="">
+    <div class="form">
+      <h1>Identity Generation Form</h1>
+        <form action="" method="post">
+          {% csrf_token %}
+        <div class="form-item">
+        <label class="file-name" for="file-name">Activity Name (AN)</label>
+        <input type="text" name="id_tag" placeholder="give a string to generate a username from " id="credential-id" />
+        </div>
+        
+
+        <div class="form-item">
+          <label class="file-name" for="username">Full User Name (FUN)</label>
+          <input type="text" name="username" placeholder="full name for the identity" id="credential-id" />
+          </div>
+        
+          <div class="form-item">
+            <label class="file-name" for="username">Full User Name (FUN)</label>
+            <input type="text" name="metamask-addr" placeholder="metamask address" id="metamask-id" />
+            </div>
+          
+            
+            
+          
+          
+
+        
+
+        <div class="form-item">
+        <label class="credential-input" for="credential-input">Identity Body(IB) describing yourself and the organisation</label>
+        
+        <textarea name="credential_identity_data"  placeholder="Place all identity here " id="identityDataInput" ></textarea>
+        </div>
+       <div class="form-item">
+          <label for="description">Others</label>
+          <textarea name="did" id="did" placeholder="other informations" ></textarea>
+        </div>
+  <button
+    class="btn issueIdentity"
+  >
+    Issue Identity
+  </button>
+
+        </form>
+
+      </div>
+</body>
+
+{% endblock body %}

@@ -1,0 +1,47 @@
+{% load static %}
+
+{% block mail_content%}
+<link rel="stylesheet" href="{% static 'styles/emailer.css'%}">
+<body>
+    
+    <div class="form">
+        
+        
+        {% block emoji%}
+        <div class="emoji">
+            {% block img%}
+            <img style="margin-top: 4vh;" src="../static/undraw/emv1.png" alt="">
+            {% endblock img%}
+            
+              {% block paragraph %}
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+                 Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+                  perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+                   commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+                    quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+                libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+              </p>
+               {% endblock paragraph%}
+          </div>
+        {% endblock emoji%}
+        {% block form1%}
+        <form method="get">
+            <h1 style="margin-bottom: 4vh;">Verify OTP</h1>
+            {% csrf_token %}
+            <input type="text" id="otp" placeholder="otp recieved" name="otp" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+        {% endblock form1%}
+        {% block form2%}
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="user_address"  placeholder="paste from metamask"><br>
+            <input type="email" id="address" name="address" placeholder="email to get OTP" required>
+            <button style="margin-bottom: 15vh;" type="submit">Generate OTP</button>
+        </form>
+        {% endblock form2%}
+    </div>
+</body>
+
+{% endblock %}

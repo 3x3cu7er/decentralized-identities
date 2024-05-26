@@ -1,0 +1,92 @@
+{% extends '../wallet/base.html' %}
+{% load static %}
+{%block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/home.css'%}">
+</head>
+
+<body>
+
+   
+    <div class="border-example">
+        <h5 class="head1">UPLOADED FILES</h5>
+        <div class="para">
+            {% if user_files %}
+                <ul>
+                    {% for file in user_files %}
+                        {% if not file.shared %}
+
+                            <div class="file-info">
+                                <strong style="color:black">File Name:  {{ file.fileName }} </strong>
+                                <strong style="color:black">File Size: {{ file.fileSize }} mb </strong> 
+                            </div>
+                            <div class="action-buttons">
+                                <a class="share-down" href="{% url 'download credential file' file_id=file.id %}" style="color: rgb(34, 216, 156);" class="dw1">DOWNLOAD</a>
+                                <a class="share-down" href="{% url 'share a credential file' file_id=file.id %}" style="color: rgb(95, 152, 133);" class="dw1">SHARE</a>
+                            </div>
+                            <br><br>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No files uploaded yet.</p>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+
+    <div class="border2">
+        <p class="head2">SHARED FILES</p>
+        <div class="para2">
+            {% if user_files %}
+                <ul>
+                    {% for file in user_files %}
+                        {% if file.shared %}
+
+                            <div class="file-info">
+                                <strong style="color:black">File Name:  {{ file.fileName }} </strong>
+                                <strong style="color:black">File Size: {{ file.fileSize }} mb </strong> 
+                                <strong style="color:black">Sender: {{ file.sender }} </strong> 
+                            </div>
+                            <div class="action-buttons" id="sh-do-has">
+                                <a class="share-down" href="{% url 'download credential file' file_id=file.id %}" style="color: rgb(34, 216, 156);" class="dw1">DOWNLOAD</a>
+                                <a class="share-down" href="{% url 'share a credential file' file_id=file.id %}" style="color: rgb(95, 152, 133);" class="dw1">SHARE</a>
+                            </div>
+                            <br><br>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No files SHared yet.</p>
+            {% endif %}
+
+        </div>
+    </div> <br><br>
+
+ <div class="d-flex" style="gap: 4%;border-radius: 5px; border: .1px solid silver;padding: 2%;width: 25%;position: absolute;right: 2%;">
+        <div class="">
+            <h5 class="head1">Data File Sharing</h5><br>
+            <a href="{% url 'upload credential file'%}" class="btn btn-primary">Upload File</a><br><br>
+        </div>
+
+        <div class="" style="border-left: .1px solid silver;padding-left: 10%;">
+            <h5 class="head1">Leave Site</h5><br>
+            <form action="{% url 'space:logout'%}" method="post">
+              {% csrf_token%}
+        <a><button class="btn btn-primary">logout</button></a><br><br>
+            </form>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>
+{% endblock content %}

@@ -1,0 +1,178 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block mainContent%}
+<link rel="stylesheet" href="{% static 'styles/profile.css'%}" />
+
+<div class="main">
+ 
+
+
+
+  <div class="container">
+    <h1>Hello, <span>{{request.user}}</span></h1>
+      <div class="writings">
+        <div class="typewriter">
+          <p id="text">welcome to profile page.</p>
+        </div>
+      </div>
+    <div class="recent-adds">
+      <div class="fore">
+        <h1 class="bold "><span class="blue">
+            settings </span> configuration
+          <span><img src="../static/public/settings(2).gif" alt=""></span>
+        </h1>
+        <div class="tips">
+          <hr>
+          <h1> <span>Tips</span></h1>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+            Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+            perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+            commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+            quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+            libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+          </p>
+          <hr>
+        </div>
+      </div>
+      <div class="fields">
+
+        <div class="set">
+          <!-- image  -->
+          <div class="heading">
+            <h1>Active User <span>[ {{request.user}}]</span> </h1>
+          </div>
+          <img class="profile" src="{{request.user.profile.image.url}}" alt="">
+          <div class="form">
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              
+              <div class="board">
+
+
+
+                <div class="chg-username mart">
+                  <h2>Change Username</h2>
+                  <div class="edit" class="mart">
+                    <h4>Reset Username</h4>
+                    {{u_form.username}}
+                  </div>
+                </div>
+
+                <div class="chg-username mart names" >
+                  <div class="flex">
+                    <div class="fname">
+                      <h4>First Name</h4>
+                    <div class="edit" class="mart">
+                      {{u_form.first_name}}
+                    </div>
+                    </div>
+                    <div class="lname">
+                      <h4>Last Name</h4>
+                    <div class="edit" class="mart">
+                      {{u_form.last_name}}
+                    </div>
+                    </div>
+                  </div>
+                </div>
+
+              
+
+                <div class="heading">
+                  <h1>Change Email <span><img src="../static/public/email2.gif" alt=""></span></h1>
+                </div>
+                <div class="chg-passwd" class="mart">
+                  <div class="edit" class="mart">
+                    <h3>Update Email</h3>
+                    {{u_form.email}}
+                  </div>
+                </div>
+
+               
+
+              </div>
+              <div class="heading">
+                <h1>Update Profile <span><img src="../static/public/card1.gif" alt=""></span></h1>
+              </div>
+                <div class="update-prof" class="mart">
+                  <div class="edit" class="mart">
+                    <h4>Change Profile Picture</h4>
+                    {{p_form}}
+                  </div>
+                </div>
+
+                <div class="heading">
+                  <h1>Update Security <span><img src="../static/public/protect.gif" alt=""></span></h1>
+                </div>
+                <div class="edit-security">
+                  <div class="reset-passwd" class="mart">
+                    <h2>Change Password</h2>
+                    <div class="chg-username mart names" >
+                      <div class="flex">
+                        <div class="fname">
+                          <h4>Password</h4>
+                        <div class="edit" class="mart">
+                          {{u_form.password}}
+                        </div>
+                        </div>
+                        <div class="lname">
+                          <h4>Confirmation Password</h4>
+                        <div class="edit" class="mart">
+                          {{u_form.password}}
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                      <div class="flex">
+                        <h4>Two Factor Authentication</h4>
+                        <input type="checkbox" name="" id="two-factor" />
+                      </div>
+                     
+                </div>
+
+                <div class="heading">
+                  <h1>Notifications  <span><img src="../static/public/alert.gif" alt=""></span></h1>
+                </div>
+                <div class="edit-pref">
+                      <div class="flex">
+                        <h4>Mute Notifications</h4>
+                        <input type="checkbox" name="" id="notify" />
+                      </div>
+                      <div class="flex">
+                        <h4>Dark Mode</h4>
+                        <input type="checkbox" name="" id="mode" />
+                      </div>
+                </div>
+
+                <div class="edit-data">
+                  <h2>Manage Data</h2>
+                    <div class="flex">
+                      <h4>Download Data</h4>
+                      <input type="checkbox" name="" id="data" />
+                    </div>
+                    <div class="flex">
+                      <h4>Clear Search History</h4>
+                      <input type="checkbox" name="" id="history" />
+                    </div>
+                </div>
+
+                <div class="save-btn">
+                  <button class='save'> Update </button>
+                </div>
+            </form>
+          </div>
+        </div>
+
+
+       
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock%}

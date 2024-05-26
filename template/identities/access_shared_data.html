@@ -1,0 +1,16 @@
+{% extends '../wallet/base.html'%}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static '/share/edit.css'%}">
+<h2>Access Shared Data</h2>
+{% if shared_data %}
+    <ul>
+        {% for item in shared_data %}
+            <li>Owner: {{ item.owner_address }} - Data: {{ item.data }} - Expiry: {{ item.expiry_date }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No shared data found.</p>
+{% endif %}
+<a href="{% url 'identity_list' %}">Back to Identity List</a>
+{% endblock content %}

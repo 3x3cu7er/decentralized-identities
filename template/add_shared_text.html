@@ -1,0 +1,35 @@
+{% extends './wallet/base.html' %}
+{% load static %}
+
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static '/share/add.css'%}">
+</head>
+<body>
+    <div class="container">
+        <h1>Share Data</h1>
+        
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="text">Text</label><br>
+        
+        <textarea name="text" id="text" rows="4" cols="50"></textarea><br>
+        <label for="time_limit">Time Limit (YYYY-MM-DD HH:MM):</label>
+    <input type="datetime-local" id="time_limit" name="time_limit" placeholder="YYYY-MM-DD HH:MM" required>
+        <label for="recipient">Recipient</label><br>
+        <select name="recipient" id="recipient">
+            {% for user in users %}
+            <option >{{ user.username }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</body>
+</html>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+<!-- templates/identities/set_identity.html -->
+
+<form method="post">
+    {% csrf_token %}
+    <label for="ipfs_hash">IPFS Hash:</label>
+    <input type="text" name="ipfs_hash" required><br>
+    <button type="submit">Set Identity</button>
+</form>
+{% if success %}
+<p>{{ success }}</p>
+{% endif %}
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}

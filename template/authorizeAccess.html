@@ -1,0 +1,101 @@
+{% extends 'main.html' %}
+
+{% load static%}
+{% block mainContent%}
+{% include './components/navigation.html'%}
+
+<link rel="stylesheet" href="{% static '/styles/authorize.css'%}">
+
+<div class="credntials-container">
+  <h1 class="bold">Manage <span class="blue">Permissions</span><span><img src="../static/public/protect.gif"
+        alt=""></span> </h1>
+
+  <div class="search">
+    <img class="search-icon" width="30" height="30" src="../static/public/search.gif" />
+    <input type="search" placeholder="search to share !" name="search" id="" class="search-item" />
+  </div>
+
+  <h3>Select credentials to share .</h3>
+
+  <div class="credntials">
+
+
+    <div class="details">
+      <div class="information">
+        <div class="data">
+          <h4>{{request.user.first_name}} {{request.user.last_name}} Digital Info</h4>
+          <ul>
+            <li>manage credentials sharing 
+              <ul>
+                <li> <a style="color: blue;" href="{% url 'shared credential'%}">https:localhost:8000/shared/credential</a></li>
+              </ul>
+            </li>
+
+            <li>upload & share file documents
+              <ul><li>
+                <a style="color:blue;" href="{% url 'upload credential file'%}">http://localhost:8000/credential/files</a>
+              </li></ul>
+            </li>
+          </ul>
+          </div>
+          
+      </div>
+    </div>
+    <div class="pop">
+      <div class="close">
+        <img id="close" src="../static/public/x.svg" alt="">
+      </div>
+      <h4>Printing..</h4>
+      <img src="../static/public/printing.gif" alt="">
+      <div class="printing">
+        <input type="submit" value="Print" id="printing" class="ctrl marginTop" />
+      </div>
+    </div>
+
+    <!-- email-pop  -->
+    <div class="email-pop">
+      <div class="close">
+        <img id="cancel" src="../static/public/x.svg" alt="">
+      </div>
+      <h4>Emailing..</h4>
+      <img src="../static/public/email2.gif" alt="">
+      <div class="form">
+        <form action="">
+          <input type="email" name="e-identity" id="email-field">
+          <input type="submit" value="send"  class="ctrl marginTop" />
+        </form>
+      </div>
+    </div>
+
+
+
+
+    <!-- <div class="controls">
+      <h3>Convert the selected details into </h3>
+      <div class="control-btns">
+        <div>
+          <input type="submit" value="Email" id="emailing" class="ctrl" />
+        </div>
+        <div>
+          <input type="submit" value="Token" class="ctrl" />
+        </div>
+        <div>
+          <input type="submit" value="PDF" id="pdf" class="ctrl " />
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+
+
+
+
+</div>
+
+<script src="{% static '/js/print.js'%}"></script>
+<script >
+  let signature = document.querySelector(".signature");
+  recv = JSON.parse("{{ signature | escapejs }}")
+  signature.innerHTML = ` <h3> [ Signature ]</h3> <h5><span style="margin-left:2%">${recv}</span></h5>`
+</script>
+{% endblock%}

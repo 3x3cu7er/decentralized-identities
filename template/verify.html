@@ -1,0 +1,55 @@
+{% load static %}
+{% block structure%}
+{% block title %}
+<title>Identity Verification</title>
+{% endblock title %}
+
+
+{% block body %}
+<link rel="stylesheet" href="{% static '/css/verify.css'%}">
+<body>
+    <h1>Identity Validation</h1>
+
+    <div class="emoji">
+      <img src="../static/undraw/search.svg" alt="">
+      
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+           Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+            perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+             commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+              quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+          libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+        </p>
+    </div>
+    <div class="container">
+        {% block verify_form %}
+    <h1>Verify Identity</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="user_address">User Address You used durin the DID registration </label>
+        <input type="text" id="public_key" name="public_key" required><br><br>
+        <label for="user_address">The Email you received the OTP on  </label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="user_address">The Reference  Number  sent to you recently </label>
+        <input type="text" id="reference" name="reference" required><br><br>
+        <button type="submit">Verify Identity</button>
+    </form>
+    {% endblock verify_form %}
+    <h1>status</h1>
+    {% if is_verified %}
+        <p>The identity is verified.</p>
+    {% else %}
+        <p>The identity is not verified.</p>
+    {% endif %}
+
+    {% block issued_id %}
+    <h1>Hashes</h1>
+    <p>User Address Hash: {{ transaction_name_hash }}</p>
+    <p>Username : {{ identity_name }}</p>
+    {% endblock issued_id %}
+    </div>
+</body>
+
+{% endblock body %}
+{% endblock structure%}

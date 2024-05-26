@@ -1,0 +1,91 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block mainContent%}
+
+<link rel="stylesheet" href="{% static '/styles/addContent.css'%}">
+<div class="file-drive">
+    <h1 class="bold ">Upload a  <span class="blue">  New File.</span> </h1>
+
+    <div class="emoji">
+      <img src="../static/undraw/add-file.svg" alt="">
+      
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+           Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+            perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+             commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+              quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+          libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+        </p>
+    </div>
+      <div class="files-x">
+        <h1 class="bold-x ">Files Section.</h1>
+       <div class="scroll-x">
+       <div class="categories">
+          <div class="cat">
+            <div class="top-content">
+              <img width="25" class="up" height="25"  src="../static/public/plus.svg"/>
+              <h5>File</h5>
+              
+            </div><hr />
+
+            <div class="form">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-item">
+                <label class="file-name" for="file-name">Name File:</label>
+                <input type="text" name="filename" placeholder="file name" id="filename" />
+                </div>
+                
+                <div class="description">
+                <div class="form-item">
+                  <label for="description">Description:</label>
+                  <textarea name="description" id="description" placeholder="Describe The File" ></textarea>
+                </div>
+                </div>
+
+                <div class="description">
+                  <div class="form-item">
+                    <label for="time">Date</label>
+                    <input type="date" name="time" id="time" placeholder="time created" >
+                  </div>
+                  </div>
+  
+
+                <div class="select-from form-item">
+                  <label for="select-file">Select File:</label>
+                  <input type="file" name="file" id="select-file" />
+                </div>
+                  <input
+          type="submit"
+            class="btn"
+            value="Add to files"
+          />
+        </div>
+              </form>
+               <div class="sub-btn " >
+        
+            </div>
+       
+          </div>
+        </div>
+        <div class="tips">
+          <h5> <span>tips</span></h5><hr>
+          <div class="ic-image">
+            <img src="../static/undraw/add-file.svg" alt="">
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+             Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+              perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+               commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+                quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+            libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+          </p>
+        </div>
+       </div>
+        
+      </div>
+
+    </div>
+{% endblock%}

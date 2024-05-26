@@ -1,0 +1,36 @@
+{% load static %}
+
+{% block invictus_main%}
+<link rel="stylesheet" href="{% static '/css/main.css'%}">
+<div class='container'>
+      
+    <div class="header">
+      <a style="border-right: .1px solid silver;" class="link"  style="margin-left: 40%;" href="{% url 'identity verification'%}">Verify Identity</a>
+      <a style="border-right: .1px solid silver;" class="link"  style="margin-left: 40%;" href="{% url 'get access code'%}">Generate Access Code</a>
+        <a style="border-right: .1px solid silver;" class="link"  style="margin-left: 40%;" href="{% url 'get identity'%}">Get Identity</a>
+       
+    </div>
+    <div class="main">
+      <div class="body-container">
+        
+        <div class="left-col">
+          <h1 class="huge">
+           The Identity Issuer (TII)
+          </h1>
+          
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex modi natus ratione 
+            quas quo? Tenetur quo repudiandae
+             in iusto possimus doloribus voluptas iste, 
+            tempore sapiente!</p>
+            
+        </div>
+
+        
+      </div>
+    </div>
+    
+  </div>
+  <script>
+
+  </script>
+{% endblock invictus_main%}

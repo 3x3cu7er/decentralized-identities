@@ -1,0 +1,25 @@
+{% extends '../wallet/base.html'%}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static '/share/edit.css'%}">
+<h2>Share Data</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="owner_address">Owner Address:</label>
+    <select name="owner_address">
+        {% for identity in identities %}
+            <option value="{{ identity.user_address }}">{{ identity.username }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="receiver_address">Receiver Address:</label>
+    <select name="receiver_address">
+        {% for identity in identities %}
+            <option value="{{ identity.user_address }}">{{ identity.username }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="data">Data:</label>
+    <input type="text" name="data"><br>
+    <button type="submit">Share</button>
+</form><br>
+<a href="{% url 'identity_list' %}">Back to Identity List</a>
+{% endblock content %}

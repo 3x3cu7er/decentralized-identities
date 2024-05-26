@@ -1,0 +1,36 @@
+{% block navigations%}
+{% load static%}
+<link rel="stylesheet" href="{% static '/styles/explore.css'%}">
+      <div class="nav-links">
+        <div class="nav-link">
+         <span><img src="../../static/public/chart1.gif" alt=""></span>
+        </div>
+        <div class="nav-link">
+          <a href="{% url 'add contents to store'%}" class='link' >Add Content</a>
+        </div>
+        <div class="nav-link">
+          <a href="{% url 'credential repository'%}" class='link' >Credentials Drive</a>
+        </div>
+        
+                
+        <div class="nav-link">
+          <a href="{% url 'Dashboard'%}" class='link' >Dashboard</a>
+        </div>
+
+
+      <div class="nav-link">
+          <a href="{% url 'reporitory'%}" class='link' >File Drive</a>
+        </div>
+
+
+        <div class="nav-link">
+          <a href="{% url 'shared credential'%}" class='link' >Share Information</a>
+        </div>
+
+        <div class="nav-link">
+          <a href="{% url 'credential sharing home'%}" class='link' >Share Data File</a>
+        </div>
+        
+      </div>
+
+{% endblock%}

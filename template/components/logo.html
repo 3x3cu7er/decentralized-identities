@@ -1,0 +1,11 @@
+{% load static %}
+{% block logo%}
+<link rel="stylesheet" href="{% static 'styles/logo.css'%}">
+    <a href="{% url 'main'%}">
+        <div style="background-color: white; position: sticky; top: 0;padding: 2% 0 1% .2%;z-index: 100;" class="applogo">
+            <img class="profile-x" src="{{request.user.profile.image.url}}" alt="">
+           <h3> {{request.user}}</h3> 
+        </div>
+        
+    </a>
+{% endblock %}   

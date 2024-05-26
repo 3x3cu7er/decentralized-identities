@@ -1,0 +1,29 @@
+{% extends 'emailer.html'%}
+
+{% block access_code %}
+
+{% block img%}
+
+<img style="margin-top: 4vh;" src="../static/undraw/generate_code.png" alt="">
+{% endblock img%}
+
+{% block paragraph %}
+<div class="data">
+    <h1 style="margin-bottom: 4vh;">Generate Access Code</h1>
+    <h4 style="margin: 3% 0 5% 0;"> <span>[Notification]</span><br><br>{{caution}}</h4>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
+     Explicabo beatae sapiente itaque, nemo blanditiis quae maiores reprehenderit, <br>
+      perspiciatis, nostrum ab rerum sed! Adipisci neque sunt dicta quas accusantium <br>
+       commodi cupiditate! Minima qui tenetur culpa distinctio. Beatae accusantium quod <br>
+        quas ab aliquam voluptatum necessitatibus a aspernatur nemo nobis! Alias nisi tempore,<br>
+    libero veniam sint nam fugit delectus temporibus natus eligendi debitis?
+  </p>
+  
+</div>
+
+{% endblock paragraph%}
+{% block form1%}
+        
+{% endblock form1%}
+{% endblock access_code %}

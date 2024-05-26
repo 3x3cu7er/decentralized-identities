@@ -1,0 +1,12 @@
+{% extends '../wallet/base.html'%}
+{% load static %}
+{% block content%}
+<link rel="stylesheet" href="{% static '/share/edit.css'%}">
+<h2>Identity List</h2>
+<ul>
+    {% for identity in identities %}
+        <li>{{ identity.name }} [ {{ identity.ethereum_address }} ] - <a href="{% url 'access_shared_data' identity.ethereum_address %}">Access Shared Data</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'revoke_data' %}">Revoke Data</a>
+{% endblock content %}
