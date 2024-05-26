@@ -1,0 +1,445 @@
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your_smtp_host'
+EMAIL_PORT = your_smtp_port
+EMAIL_USE_TLS = True  # Or False if not using TLS
+EMAIL_HOST_USER = 'your_email@example.com'
+EMAIL_HOST_PASSWORD = 'your_email_password'
+
+
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+
+def contact_us(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        # Compose email content using a template
+        email_content = render_to_string('email/contact_us_email.html', {'name': name, 'message': message})
+        
+        try:
+            send_mail(
+                'Message from {}'.format(name),
+                email_content,
+                'sender@example.com',  # Replace with your sender email address
+                ['recipient@example.com'],  # Replace with your recipient email address(es)
+                fail_silently=False,
+            )
+            return redirect('success_page')  # Redirect to a success page after sending email
+        except Exception as e:
+            # Handle errors or display error message to the user
+            return render(request, 'error_page.html', {'error_message': str(e)})
+            
+    return render(request, 'contact_us.html')
+
+
+
+
+//////////////////////////////////////////////
+otp//////////
+
+
+import random
+
+def generate_otp():
+    return ''.join(random.choices('0123456789', k=6))
+
+
+
+
+from django.core.mail import send_mail
+
+def send_otp_email(email, otp):
+    message = f"Your OTP for authentication is: {otp}"
+    send_mail(
+        'One-Time Password (OTP) for Authentication',
+        message,
+        'sender@example.com',  # Replace with your sender email address
+        [email],  # Send OTP to user's email address
+        fail_silently=False,
+    )
+
+
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+
+def send_otp(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            otp = generate_otp()
+            send_otp_email(email, otp)
+            request.session['otp'] = otp  # Store OTP in session for verification
+            request.session['email'] = email  # Store email in session for verification
+            return redirect('verify_otp')
+        else:
+            messages.error(request, "Email is required.")
+    return render(request, 'send_otp.html')
+
+
+
+
+
+def verify_otp(request):
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+        stored_otp = request.session.get('otp')
+        email = request.session.get('email')
+        if entered_otp == stored_otp:
+            # OTP verification successful, proceed with authentication
+            # You can implement user login or any other action here
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+    return render(request, 'verify_otp.html')
+
+
+
+
+
+///////////////////////
+////////////////////// otp with contract //////////////////////
+
+from web3 import Web3
+
+# Initialize Web3 provider
+web3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/your-infura-api-key'))
+
+# Contract ABI and address
+contract_address = "YOUR_CONTRACT_ADDRESS"
+contract_abi = [
+    # Your contract ABI
+]
+contract = web3.eth.contract(address=contract_address, abi=contract_abi)
+
+
+
+def send_otp_to_blockchain(user_address, otp):
+    # Encrypt the OTP and store it on the blockchain
+    encrypted_otp = encrypt_function(otp)  # Implement your encryption function
+    # Call a function in your smart contract to store the encrypted OTP
+    tx_hash = contract.functions.storeEncryptedOTP(user_address, encrypted_otp).transact()
+    # Wait for transaction receipt
+    receipt = web3.eth.waitForTransactionReceipt(tx_hash)
+
+
+
+
+def verify_otp(request):
+    if request.method == 'POST':
+        user_address = request.POST.get('user_address')
+        entered_otp = request.POST.get('otp')
+        # Retrieve encrypted OTP from the blockchain using the user's address
+        encrypted_otp = contract.functions.getEncryptedOTP(user_address).call()
+        # Decrypt the encrypted OTP
+        decrypted_otp = decrypt_function(encrypted_otp)  # Implement your decryption function
+        if entered_otp == decrypted_otp:
+            # OTP verification successful, proceed with data sharing
+            return redirect('data_sharing_page')
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+    return render(request, 'verify_otp.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+////////////////////////////// more with smart contract ///////////
+
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract OTPStorage {
+    mapping(address => bytes) public encryptedOTPs;
+
+    function storeEncryptedOTP(address user, bytes memory encryptedOTP) public {
+        encryptedOTPs[user] = encryptedOTP;
+    }
+
+    function getEncryptedOTP(address user) public view returns (bytes memory) {
+        return encryptedOTPs[user];
+    }
+}
+
+
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from web3 import Web3
+import random
+
+# Initialize Web3 provider
+web3 = Web3(Web3.HTTPProvider('https://mainnet.infura.io/v3/your-infura-api-key'))
+
+# Contract ABI and address
+contract_address = "YOUR_CONTRACT_ADDRESS"
+contract_abi = [
+    # Your contract ABI
+]
+contract = web3.eth.contract(address=contract_address, abi=contract_abi)
+
+# Function to generate OTP
+def generate_otp():
+    return ''.join(random.choices('0123456789', k=6))
+
+# Function to encrypt OTP (replace with your encryption logic)
+def encrypt_otp(otp):
+    return bytes(otp, 'utf-8')
+
+# Function to decrypt OTP (replace with your decryption logic)
+def decrypt_otp(encrypted_otp):
+    return encrypted_otp.decode('utf-8')
+
+def send_otp(request):
+    if request.method == 'POST':
+        user_address = request.POST.get('user_address')
+        if not user_address:
+            messages.error(request, "User address is required.")
+            return render(request, 'send_otp.html')
+        
+        otp = generate_otp()
+        encrypted_otp = encrypt_otp(otp)
+        # Store encrypted OTP on the blockchain
+        contract.functions.storeEncryptedOTP(user_address, encrypted_otp).transact()
+        # Redirect to OTP verification page
+        return redirect('verify_otp', user_address=user_address)
+    
+    return render(request, 'send_otp.html')
+
+def verify_otp(request, user_address):
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+        encrypted_otp = contract.functions.getEncryptedOTP(user_address).call()
+        decrypted_otp = decrypt_otp(encrypted_otp)
+        if entered_otp == decrypted_otp:
+            # OTP verification successful
+            return render(request, 'data_sharing_page.html', {'user_address': user_address})
+        else:
+            messages.error(request, "Invalid OTP. Please try again.")
+    return render(request, 'verify_otp.html', {'user_address': user_address})
+
+
+
+
+# Assuming you have a model for storing OTPs associated with users
+from django.db import models
+from django.contrib.auth.models import User
+import random
+import string
+
+class OTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @staticmethod
+    def generate_otp():
+        # Generate a random 6-digit OTP
+        return ''.join(random.choices(string.digits, k=6))
+
+# Function to send OTP to recipient
+def send_otp(recipient, otp):
+    # Implement logic to send OTP through email, SMS, etc.
+    pass
+
+# Function to generate OTP for user initiating action
+def initiate_action(user):
+    # Generate OTP
+    otp = OTP.generate_otp()
+    # Store OTP along with user
+    OTP.objects.create(user=user, otp=otp)
+    # Send OTP to user
+    send_otp(user, otp)
+
+# Function to verify OTP for recipient user
+def verify_otp(user, otp):
+    # Get the most recent OTP for the user
+    recent_otp = OTP.objects.filter(user=user).order_by('-created_at').first()
+    if recent_otp and recent_otp.otp == otp:
+        return True
+    return False
+
+# Example usage
+initiating_user = User.objects.get(username='initiator')
+recipient_user = User.objects.get(username='recipient')
+
+# Initiating user generates OTP and sends it to recipient
+initiate_action(initiating_user)
+
+# Recipient user enters OTP received
+entered_otp = input("Enter OTP: ")
+
+# Verify OTP
+if verify_otp(recipient_user, entered_otp):
+    print("OTP is valid. Granting access...")
+    # Grant access to shared data or perform the action
+else:
+    print("Invalid OTP. Access denied.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pragma solidity ^0.8.0;
+
+contract IdentitySharing {
+    mapping(address => string) public otps; // Mapping to store OTPs associated with Ethereum addresses
+
+    // Function to generate OTP and associate it with sender's Ethereum address
+    function generateOTP(string memory _otp) public {
+        otps[msg.sender] = _otp;
+    }
+
+    // Function to verify OTP and grant access if it matches the sender's OTP
+    function verifyOTP(address _sender, string memory _otp) public view returns (bool) {
+        return keccak256(abi.encodePacked(otps[_sender])) == keccak256(abi.encodePacked(_otp));
+    }
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+///////////////// otp app /////////////////////////////////
+
+
+***** models.py *******
+from django.db import models
+from django.contrib.auth.models import User
+
+class OTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+
+
+
+****** views.py ******
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import OTP
+import random
+import string
+
+@login_required
+def generate_otp(request):
+    if request.method == 'POST':
+        otp = ''.join(random.choices(string.digits, k=6))
+        OTP.objects.create(user=request.user, otp=otp)
+        # Logic to send OTP via email, SMS, etc.
+        return redirect('verify_otp')
+    return render(request, 'otp_app/generate_otp.html')
+
+@login_required
+def verify_otp(request):
+    if request.method == 'POST':
+        entered_otp = request.POST.get('otp')
+        otp_obj = OTP.objects.filter(user=request.user).order_by('-id').first()
+        if otp_obj and otp_obj.otp == entered_otp:
+            # OTP is valid, grant access to shared data
+            return render(request, 'otp_app/access_granted.html')
+        else:
+            # Invalid OTP
+            return render(request, 'otp_app/access_denied.html')
+    return render(request, 'otp_app/verify_otp.html')
+
+
+
+***** gen-otp.html ******
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate OTP</title>
+</head>
+<body>
+    <h1>Generate OTP</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Generate OTP</button>
+    </form>
+</body>
+</html>
+
+
+
+***** verify.html ****
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+</head>
+<body>
+    <h1>Verify OTP</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="otp">Enter OTP:</label>
+        <input type="text" id="otp" name="otp" required>
+        <button type="submit">Verify OTP</button>
+    </form>
+</body>
+</html>
+
+
+
+****** access-granted.html ********
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Granted</title>
+</head>
+<body>
+    <h1>Access Granted</h1>
+    <p>You have successfully verified your OTP. Access to shared data granted.</p>
+</body>
+</html>
+
+
+
+******** access-denied.html ***********
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied</title>
+</head>
+<body>
+    <h1>Access Denied</h1>
+    <p>The OTP you entered is invalid. Access denied.</p>
+</body>
+</html>
+
